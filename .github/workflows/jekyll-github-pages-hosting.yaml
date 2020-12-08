@@ -1,0 +1,41 @@
+name: jekyll-github-pages-hosting
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - uses: helaili/jekyll-action@2.0.4
+        env:
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+        with:
+          target_branch: 'gh-pages'
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: akagaeng-github-io
+          SLACK_COLOR: '#3278BD'
+          SLACK_ICON: https://github.com/akagaeng.png?size=48
+          SLACK_TITLE: 'Deployment alert: akagaeng.github.io'
+          SLACK_MESSAGE: 'Deploy success'
+          SLACK_USERNAME: 'Github Action Notification'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
