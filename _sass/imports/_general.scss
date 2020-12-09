@@ -87,10 +87,21 @@ ins {
   text-decoration: none;
 }
 
-code,
+p {
+  code {
+    font-family: _font(monospace);
+    font-size: 0.95rem;
+    background-color: #10bcf921;
+    border: 1px solid _palette(border);
+    border-radius: 2px;
+  }
+}
+
 pre {
-  font-family: _font(monospace);
-  font-size: 0.75rem;
+  code {
+    font-family: _font(monospace);
+    font-size: 0.75rem;
+  }
 }
 
 pre {
