@@ -9,8 +9,8 @@ google_analytics_id: UA-112991808-1
 layout_style: overflow
 palette: blue
 header:
-  title: 'akagaeng'
-  tagline: 'tech blog'
+  title: 'Principles'
+  tagline: 'akagaeng.github.io'
 #  profile_img: images/avatar.png
   profile_img: ''
   background: light
