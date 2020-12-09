@@ -1,16 +1,24 @@
 ---
-title: About Me
+title: about me
 subtitle: This is a short page about me and my work.
-img_path: images/about.jpg
 layout: page
+img_path: '' #images/about.jpg
 ---
 
-**John Doe** is a Senior Art Director from [Stockholm](https://en.wikipedia.org/wiki/Stockholm), Sweden. After graduating from The College of Visual Arts with a degree in Communication Design, he worked for three small graphic design shops where he honed his design style and sensibility.
+### My Principles
 
-His work has been recognized by Communication Arts, Print, How, ID, IdN, AIGA, Effie, Archive, Graphis, AdFed and Rockport. Graphic Design USA named him a person to watch in 2019.
+> Here's principles I keep in mind
 
->The world always seems brighter when you’ve just made something that wasn’t there before. <cite>Neil Gaiman</cite>
+* think from an end-user perspective
+* think "why" and "how"
+* understand people make mistakes
+* write a document and share it whenever I write code
+* work together
+* learn from everything and everyone
 
-As a hobby, John Doe authors the most influential design blog in Sweden with over 100,000 page views a month. He lives in Stockholm with his beautiful wife and two boys.
+### Software Development Principles I Like
 
-*Thank You for reading!*
+* **YAGNI**: You Aren't Gonna Need It
+* **KISS**: Keep It Simple Stupid!
+* Measure Twice and Cut Once
+* **DRY**: Don’t Repeat Yourself
