@@ -11,7 +11,8 @@ palette: blue
 header:
   title: 'akagaeng'
   tagline: 'tech blog'
-  profile_img: images/avatar.png
+#  profile_img: images/avatar.png
+  profile_img: ''
   background: light
   has_nav: true
   nav_links:

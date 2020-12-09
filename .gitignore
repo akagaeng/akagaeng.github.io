@@ -1,2 +1,6 @@
 _site
 node_modules
+.idea
+.vscode
+.jekyll-cache
+.sass-cache
