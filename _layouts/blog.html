@@ -4,9 +4,9 @@ pagination:
   enabled: true
   permalink: '/:num/'
 ---
-  <h1 class="post-title underline">{{ page.title }}</h1>
+  <h1 class="underline inner-sm">{{ page.title }}</h1>
 
-  <div class="post-feed">
+  <div class="post-feed inner-sm">
     <div class="post-feed-inside">
       {% for post in paginator.posts %}
       <article class="post post-card">
