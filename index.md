@@ -4,9 +4,10 @@ hide_title: true
 sections:
   - section_id: hero
     type: section_hero
-    title: akagaeng's tech blog
+    title: "akagaeng's tech blog"
     content: >-
-      Hello world :)
+      Principles
+      
   - section_id: about
     type: section_content
     title: About
