@@ -28,32 +28,17 @@ header:
     - label: about
       url: /about/
       style: link
-  has_social: false
+  has_social: true
   social_links:
-    - label: Twitter
-      url: 'https://twitter.com/'
-      style: icon
-      icon_class: fa-twitter
-      new_window: true
-    - label: Instagram
-      url: 'https://www.instagram.com/'
-      style: icon
-      icon_class: fa-instagram
-      new_window: true
     - label: GitHub
-      url: 'https://github.com/'
+      url: 'https://github.com/akagaeng'
       style: icon
       icon_class: fa-github
       new_window: true
     - label: LinkedIn
-      url: 'https://www.linkedin.com/'
+      url: 'https://www.linkedin.com/in/kyeongsy'
       style: icon
       icon_class: fa-linkedin
-      new_window: true
-    - label: DEV
-      url: 'https://dev.to/'
-      style: icon
-      icon_class: fa-dev
       new_window: true
 pagination:
   enabled: true
