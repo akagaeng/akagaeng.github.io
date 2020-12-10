@@ -1,6 +1,6 @@
 ---
 title: about me
-subtitle: This is a short page about me and my work.
+subtitle: This is a short page about me as a Software Engineer
 layout: page
 img_path: '' #images/about.jpg
 ---
