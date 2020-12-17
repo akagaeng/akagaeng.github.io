@@ -11,7 +11,7 @@ palette: blue
 header:
   title: 'Principles'
   tagline: 'akagaeng.github.io'
-#  profile_img: images/avatar.png
+  #  profile_img: images/avatar.png
   profile_img: ''
   background: light
   has_nav: true
@@ -22,9 +22,9 @@ header:
     - label: blog
       url: /blog/
       style: link
-#    - label: favorites
-#      url: /favorites/
-#      style: link
+    #    - label: favorites
+    #      url: /favorites/
+    #      style: link
     - label: about
       url: /about/
       style: link
@@ -44,6 +44,8 @@ pagination:
   enabled: true
   per_page: 6
   permalink: '/page/:num/'
+  sort_reverse: true
+  sort_field: 'date'
   trail:
     before: 4
     after: 4
