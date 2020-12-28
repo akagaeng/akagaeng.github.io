@@ -1,4 +1,5 @@
 ---
+title: git refusing to merge unrelated histories 해결 방법
 excerpt: >-
   git 으로 소스코드 관리를 하다보면 가끔 fatal: refusing to merge unrelated histories 와 같은 메시지를 볼 수 있습니다. 이러한 경우에 할 수 있는 간단한 해결책을 알아보겠습니다. 
 thumb_img_path: ''

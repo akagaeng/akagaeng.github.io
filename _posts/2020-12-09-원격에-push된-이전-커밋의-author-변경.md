@@ -1,4 +1,5 @@
 ---
+title: 원격 저장소에 push된 이전 커밋의 author 변경하는 방법
 excerpt: >-
   여러 개의 github profile을 이용하는 등으로 author 정보가 잘못 원격 저장소에 올라간 경우 이에 대한 조치 방법입니다. 
 thumb_img_path: '' # images/9.jpg

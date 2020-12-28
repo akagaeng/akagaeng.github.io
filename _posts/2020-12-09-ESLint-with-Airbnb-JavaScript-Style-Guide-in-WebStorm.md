@@ -1,4 +1,5 @@
 ---
+title: WebStorm 에서 ESLint Airbnb JavaScript Style Guide 설정 방법
 excerpt: >-
   How to set up ESLint with Airbnb JavaScript Style Guide in WebStorm
 thumb_img_path: '' # images/9.jpg
