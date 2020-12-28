@@ -87,11 +87,11 @@ ins {
   text-decoration: none;
 }
 
-p {
+p, li {
   code {
     font-family: _font(monospace);
-    font-size: 0.95rem;
-    background-color: #10bcf921;
+    font-size: 0.75rem;
+    background-color: _palette(bg); // #10bcf921;
     border: 1px solid _palette(border);
     border-radius: 2px;
   }
@@ -100,7 +100,7 @@ p {
 pre {
   code {
     font-family: _font(monospace);
-    font-size: 0.75rem;
+    font-size: .75em;
   }
 }
 
@@ -111,7 +111,7 @@ pre {
   color: _palette(secondary);
   margin: 1.66667rem 0;
   overflow: auto;
-  padding: 1.33333em;
+  padding: 1em;
   position: relative;
   white-space: pre;
 
