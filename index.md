@@ -1,29 +1,26 @@
 ---
-title: Home
-hide_title: true
-sections:
-  - section_id: hero
-    type: section_hero
-    title: "akagaeng's tech blog"
-    content: >-
-      Principles
-      
-  - section_id: about
-    type: section_content
-    title: About
-    content: >-
-      I am a Software Engineer with professional experience with a wide rage of technologies. I have worked with JavaScript(node.js), Python, Go and more. Currently, focusing on how to solve real-world problems with Software.
-    actions:
-      - label: About me
-        url: /about
-        style: button
-  - section_id: recent-posts
-    type: section_posts
-    title: Recent Posts
-    posts_number: 4
-    actions:
-      - label: View Blog
-        url: blog/index.html
-        style: button
-layout: advanced
+title: Kyeongseok Yang
+subtitle: This is the short page about me as a Software Engineer
+layout: page
+img_path: '' #images/about.jpg
 ---
+
+I am a Software Engineer with professional experience with a wide rage of technologies such as Backend engineering, Fullstack engineering and DevOps. I have worked with JavaScript(node.js), Python, Go and more. Currently I focus on how to solve real-world problems with Software and the way of automating everything around md as well!
+
+### My Principles
+
+> Here's principles I keep in mind
+
+* think from an end-user perspective
+* think "why" and "how"
+* understand people make mistakes
+* write a document and share it whenever I write code
+* work together
+* learn from everything and everyone
+
+### Software Development Principles I Like
+
+* **YAGNI**: You Aren't Gonna Need It
+* **KISS**: Keep It Simple Stupid!
+* Measure Twice and Cut Once
+* **DRY**: Don’t Repeat Yourself
