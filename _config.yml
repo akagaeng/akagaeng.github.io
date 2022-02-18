@@ -4,7 +4,7 @@ permalink: '/:title/'
 collections:
   posts:
     permalink: '/posts/:title/'
-description: 'akagaeng tech blog'
+description: 'akagaeng principles'
 google_analytics_id: UA-112991808-1
 layout_style: overflow
 palette: blue
@@ -14,7 +14,7 @@ header:
   #  profile_img: images/avatar.png
   profile_img: ''
   background: light
-  has_nav: true
+  has_nav: false
   nav_links:
     - label: home
       url: /
