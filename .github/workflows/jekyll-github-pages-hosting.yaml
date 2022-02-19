@@ -20,7 +20,7 @@ jobs:
 
       - uses: helaili/jekyll-action@v2
         with:
-          token: ${{ secrets.JEKYLL_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: 'gh-pages'
   slackNotification:
     name: Slack Notification
