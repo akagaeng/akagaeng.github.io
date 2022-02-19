@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <title>원격 저장소에 push된 이전 커밋의 author 변경하는 방법 - akagaeng.github.io</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="여러 개의 github profile을 이용하는 등으로 author 정보가 잘못 원격 저장소에 올라간 경우 이에 대한 조치 방법입니다. "/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/css/main.css">
+        
+        
+        
+        
+
+        
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112991808-1', 'auto');
+  ga('send', 'pageview');
+</script>
+        
+
+    </head>
+    <body>
+
+        <div id="page" class="site style-overflow palette-blue">
+  <header id="masthead" class="site-header light">
+  <div class="site-header-wrap">
+    <div class="site-header-inside">
+
+      <div class="site-branding">
+        
+        
+        <div class="site-identity">
+          <p class="site-title"><a href='/'>Principles</a></p>
+          
+          
+          <p class="site-description">akagaeng.github.io</p>
+          
+        </div><!-- .site-identity -->
+        
+        <button id="menu-toggle" class="menu-toggle"><span class="screen-reader-text">Menu</span><span class="icon-menu"
+            aria-hidden="true"></span></button>
+        
+      </div><!-- .site-branding -->
+
+      
+      <nav id="main-navigation" class="site-navigation" aria-label="Main Navigation">
+        <div class="site-nav-wrap">
+          <div class="site-nav-inside">
+
+            
+            
+            
+            
+            <div class="social-links">
+              
+              
+              
+              <a class="button button-icon" href="https://github.com/akagaeng" target="_blank" rel="noopener">
+                
+                <span class="fab fa-github" aria-hidden="true"></span><span class="screen-reader-text">GitHub</span>
+                
+              </a>
+              
+              
+              
+              
+              <a class="button button-icon" href="https://www.linkedin.com/in/kyeongsy" target="_blank" rel="noopener">
+                
+                <span class="fab fa-linkedin" aria-hidden="true"></span><span class="screen-reader-text">LinkedIn</span>
+                
+              </a>
+              
+              
+            </div><!-- .social-links -->
+            
+          </div><!-- .site-nav-inside -->
+        </div><!-- .site-nav-wrap -->
+      </nav><!-- .site-navigation -->
+      
+
+    </div><!-- .site-header-inside -->
+  </div><!-- .site-header-wrap -->
+</header><!-- .site-header -->
+
+  <div id="content" class="site-content">
+    <div class="inner">
+      <main id="main" class="site-main">
+          <article class="post post-full">
+    <footer class="post-meta inner-sm">
+      <time class="published"
+            datetime="2020-12-09 00:00">Wednesday, December  9, 2020</time>
+    </footer>
+    <header class="post-header inner-sm">
+      <h1 class="post-title underline">원격 저장소에 push된 이전 커밋의 author 변경하는 방법</h1>
+      
+      
+    </header>
+    
+    
+    <div class="post-content inner-sm">
+      <h2 id="summary">Summary</h2>
+
+<h3 id="이전-커밋의-author-변경">이전 커밋의 author 변경</h3>
+
+<p>변경할 커밋의 <code class="language-plaintext highlighter-rouge">바로 직전</code> commit hash 확인</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
+
+commit c3ec0cb2d55f69b82d08621a6174b7b1bfdee4a9 (HEAD -&gt; main)
+Author: akagaeng &lt;akagaeng@gmail.com&gt;
+Date:   Wed Dec 9 20:13:21 2020 +0900
+
+    feat: add 3
+
+commit d1ae535d9ec31150d18d1d0e5da3e8199168669a
+Author: wrong &lt;wrong_email@gmail.com&gt;
+Date:   Wed Dec 9 20:13:11 2020 +0900
+
+    feat: add 2
+
+commit 3b08f22adcd5955c8e5b5b30cf5d8b4d111f3ddb
+Author: akagaeng &lt;akagaeng@gmail.com&gt;
+Date:   Wed Dec 9 20:12:50 2020 +0900
+
+    feat: add 1
+
+</code></pre></div></div>
+
+<p>이 경우에는 시간 순서상 add 1 -&gt; add 2 -&gt; add 3 순으로 커밋이 되었는데,
+add 2의 커밋에서의 author가 잘못 입력되어있습니다.
+따라서 변경할 add 2커밋의 <code class="language-plaintext highlighter-rouge">바로 직전</code> 즉, add 3의 commit hash를 확인해야 합니다.
+이 경우에는 add 1의 commit hash는 <code class="language-plaintext highlighter-rouge">3b08f22adcd5955c8e5b5b30cf5d8b4d111f3ddb</code>가 됩니다.</p>
+
+<h3 id="rebase">rebase</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase -i -p 3b08f22adcd5955c8e5b5b30cf5d8b4d111f3ddb
+</code></pre></div></div>
+
+<h3 id="커밋-수정">커밋 수정</h3>
+<ul>
+  <li>수정할 커밋 앞에 pick이라고 적힌 것을 edit으로 수정하고 저장 <code class="language-plaintext highlighter-rouge">wq</code></li>
+  <li>
+    <p>수정할 커밋부터 과거로부터 현재까지의 순서로 수정 진행 (오래된 것부터)</p>
+  </li>
+  <li>첫번째 커밋 수정하기
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit --amend --author="작성자명 &lt;email주소&gt;"
+# git commit --amend --author="akagaeng &lt;akagaeng@gmail.com&gt;"
+</code></pre></div>    </div>
+  </li>
+  <li>수정 후 다음 커밋으로 이동
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase --continue
+</code></pre></div>    </div>
+  </li>
+  <li>계속 진행 …
+    <ul>
+      <li>커밋당 수정이므로 동일한 작업이라도 반복적으로 진행해야 합니다.</li>
+    </ul>
+  </li>
+  <li>수정이 다 끝나면 다음과 같이 Success 메시지가 나옵니다.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rebase --continue
+Successfully rebased and updated refs/heads/feature/fix_jobs_controller.
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="수정사항-반영">수정사항 반영</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull
+git push
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://madplay.github.io/post/change-git-author-name">https://madplay.github.io/post/change-git-author-name</a></li>
+</ul>
+
+    </div>
+  </article><!-- .post -->
+
+  <!-- Next/previous post navigation TBD -->
+  <!--
+  <nav class="block block-read-next">
+    <h2 class="block-title underline inner-sm">Read Next</h2>
+    <div class="post-feed">
+      <div class="post-feed-inside">
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Previous Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Previous post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Previous post date</time>
+            </footer>
+          </div>
+        </article>
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Next Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Next post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Next post date</time>
+            </footer>
+          </div>
+        </article>
+      </div>
+    </div>
+  </nav>
+  -->
+
+      </main><!-- .site-main -->
+      <footer id="colophon" class="site-footer inner-sm">
+  <p class="site-info">
+    
+    
+    <span class="copyright">&copy; All rights reserved.</span>
+    
+    
+    <a  href="https://www.stackbit.com" target="_blank" rel="noopener">Made with Stackbit.</a>
+    
+  </p><!-- .site-info -->
+  <a id="to-top" class="to-top" href="#page"><span class="icon-arrow-up" aria-hidden="true"></span><span
+      class="screen-reader-text">Back to top</span></a>
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site-content -->
+</div><!-- .site -->
+
+        <!-- Scripts -->
+        <script src="/assets/js/plugins.js"></script>
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>

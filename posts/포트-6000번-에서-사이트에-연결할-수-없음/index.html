@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <title>6000번 포트에서 사이트에 연결할 수 없는 경우 해결 방법 - akagaeng.github.io</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="구글 크롬 브라우저에서 6000번 포트 등 특정 포트로 연결하는 경우 그 접근이 제한되어있다는 메시지가 나옵니다."/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/css/main.css">
+        
+        
+        
+        
+
+        
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112991808-1', 'auto');
+  ga('send', 'pageview');
+</script>
+        
+
+    </head>
+    <body>
+
+        <div id="page" class="site style-overflow palette-blue">
+  <header id="masthead" class="site-header light">
+  <div class="site-header-wrap">
+    <div class="site-header-inside">
+
+      <div class="site-branding">
+        
+        
+        <div class="site-identity">
+          <p class="site-title"><a href='/'>Principles</a></p>
+          
+          
+          <p class="site-description">akagaeng.github.io</p>
+          
+        </div><!-- .site-identity -->
+        
+        <button id="menu-toggle" class="menu-toggle"><span class="screen-reader-text">Menu</span><span class="icon-menu"
+            aria-hidden="true"></span></button>
+        
+      </div><!-- .site-branding -->
+
+      
+      <nav id="main-navigation" class="site-navigation" aria-label="Main Navigation">
+        <div class="site-nav-wrap">
+          <div class="site-nav-inside">
+
+            
+            
+            
+            
+            <div class="social-links">
+              
+              
+              
+              <a class="button button-icon" href="https://github.com/akagaeng" target="_blank" rel="noopener">
+                
+                <span class="fab fa-github" aria-hidden="true"></span><span class="screen-reader-text">GitHub</span>
+                
+              </a>
+              
+              
+              
+              
+              <a class="button button-icon" href="https://www.linkedin.com/in/kyeongsy" target="_blank" rel="noopener">
+                
+                <span class="fab fa-linkedin" aria-hidden="true"></span><span class="screen-reader-text">LinkedIn</span>
+                
+              </a>
+              
+              
+            </div><!-- .social-links -->
+            
+          </div><!-- .site-nav-inside -->
+        </div><!-- .site-nav-wrap -->
+      </nav><!-- .site-navigation -->
+      
+
+    </div><!-- .site-header-inside -->
+  </div><!-- .site-header-wrap -->
+</header><!-- .site-header -->
+
+  <div id="content" class="site-content">
+    <div class="inner">
+      <main id="main" class="site-main">
+          <article class="post post-full">
+    <footer class="post-meta inner-sm">
+      <time class="published"
+            datetime="2020-12-10 00:00">Thursday, December 10, 2020</time>
+    </footer>
+    <header class="post-header inner-sm">
+      <h1 class="post-title underline">6000번 포트에서 사이트에 연결할 수 없는 경우 해결 방법</h1>
+      
+      
+    </header>
+    
+    
+    <div class="post-content inner-sm">
+      <h2 id="problem">Problem</h2>
+
+<p>파이썬 flask로 간단히 서버를 만들고 접속 테스트를 해봅니다.</p>
+
+<p>먼저 <code class="language-plaintext highlighter-rouge">curl</code>을 이용해서 테스트를 해보았습니다.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://localhost:6000
+</code></pre></div></div>
+<p>응답이 제대로 옵니다.</p>
+
+<p>그런데…</p>
+
+<p>크롬 브라우서에서 확인해보니 다음과 같이 처음 보는 화면이 뜹니다!</p>
+
+<p><img src="/images/posts/err_unsafe_port.png" alt="err_unsafe_port" /></p>
+
+<h2 id="solution">Solution</h2>
+<p>구글에서는 기본적으로 특정 포트를 기본값으로 크롬에서 접속이 되지 않도록 막아두고 있습니다. 가장 간단한 방법은 개발용 서버에서 포트를 변경하는 것입니다. 
+저 역시 6000번 포트를 5000번과 같은 다른 포트로 변경하여 간단히 문제를 해결하였습니다.</p>
+
+<p>하지만 사정상 특정 포트를 크롬에서 연결해야하는 경우도 있을 수 있습니다. 그런 경우에는 <a href="https://superuser.com/questions/188006/how-to-fix-err-unsafe-port-error-on-chrome-when-browsing-to-unsafe-ports">여기</a> 에 방문하시면 해결방법을 찾으실 수 있습니다.</p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://superuser.com/questions/188006/how-to-fix-err-unsafe-port-error-on-chrome-when-browsing-to-unsafe-ports">https://superuser.com/questions/188006/how-to-fix-err-unsafe-port-error-on-chrome-when-browsing-to-unsafe-ports</a></li>
+</ul>
+
+    </div>
+  </article><!-- .post -->
+
+  <!-- Next/previous post navigation TBD -->
+  <!--
+  <nav class="block block-read-next">
+    <h2 class="block-title underline inner-sm">Read Next</h2>
+    <div class="post-feed">
+      <div class="post-feed-inside">
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Previous Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Previous post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Previous post date</time>
+            </footer>
+          </div>
+        </article>
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Next Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Next post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Next post date</time>
+            </footer>
+          </div>
+        </article>
+      </div>
+    </div>
+  </nav>
+  -->
+
+      </main><!-- .site-main -->
+      <footer id="colophon" class="site-footer inner-sm">
+  <p class="site-info">
+    
+    
+    <span class="copyright">&copy; All rights reserved.</span>
+    
+    
+    <a  href="https://www.stackbit.com" target="_blank" rel="noopener">Made with Stackbit.</a>
+    
+  </p><!-- .site-info -->
+  <a id="to-top" class="to-top" href="#page"><span class="icon-arrow-up" aria-hidden="true"></span><span
+      class="screen-reader-text">Back to top</span></a>
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site-content -->
+</div><!-- .site -->
+
+        <!-- Scripts -->
+        <script src="/assets/js/plugins.js"></script>
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>

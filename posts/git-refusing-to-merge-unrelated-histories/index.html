@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <title>git refusing to merge unrelated histories 해결 방법 - akagaeng.github.io</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="git 으로 소스코드 관리를 하다보면 가끔 fatal: refusing to merge unrelated histories 와 같은 메시지를 볼 수 있습니다. 이러한 경우에 할 수 있는 간단한 해결책을 알아보겠습니다. "/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/css/main.css">
+        
+        
+        
+        
+
+        
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112991808-1', 'auto');
+  ga('send', 'pageview');
+</script>
+        
+
+    </head>
+    <body>
+
+        <div id="page" class="site style-overflow palette-blue">
+  <header id="masthead" class="site-header light">
+  <div class="site-header-wrap">
+    <div class="site-header-inside">
+
+      <div class="site-branding">
+        
+        
+        <div class="site-identity">
+          <p class="site-title"><a href='/'>Principles</a></p>
+          
+          
+          <p class="site-description">akagaeng.github.io</p>
+          
+        </div><!-- .site-identity -->
+        
+        <button id="menu-toggle" class="menu-toggle"><span class="screen-reader-text">Menu</span><span class="icon-menu"
+            aria-hidden="true"></span></button>
+        
+      </div><!-- .site-branding -->
+
+      
+      <nav id="main-navigation" class="site-navigation" aria-label="Main Navigation">
+        <div class="site-nav-wrap">
+          <div class="site-nav-inside">
+
+            
+            
+            
+            
+            <div class="social-links">
+              
+              
+              
+              <a class="button button-icon" href="https://github.com/akagaeng" target="_blank" rel="noopener">
+                
+                <span class="fab fa-github" aria-hidden="true"></span><span class="screen-reader-text">GitHub</span>
+                
+              </a>
+              
+              
+              
+              
+              <a class="button button-icon" href="https://www.linkedin.com/in/kyeongsy" target="_blank" rel="noopener">
+                
+                <span class="fab fa-linkedin" aria-hidden="true"></span><span class="screen-reader-text">LinkedIn</span>
+                
+              </a>
+              
+              
+            </div><!-- .social-links -->
+            
+          </div><!-- .site-nav-inside -->
+        </div><!-- .site-nav-wrap -->
+      </nav><!-- .site-navigation -->
+      
+
+    </div><!-- .site-header-inside -->
+  </div><!-- .site-header-wrap -->
+</header><!-- .site-header -->
+
+  <div id="content" class="site-content">
+    <div class="inner">
+      <main id="main" class="site-main">
+          <article class="post post-full">
+    <footer class="post-meta inner-sm">
+      <time class="published"
+            datetime="2020-12-17 00:00">Thursday, December 17, 2020</time>
+    </footer>
+    <header class="post-header inner-sm">
+      <h1 class="post-title underline">git refusing to merge unrelated histories 해결 방법</h1>
+      
+      
+    </header>
+    
+    
+    <div class="post-content inner-sm">
+      <blockquote>
+  <p>git 으로 소스코드 관리를 하다보면 가끔 fatal: refusing to merge unrelated histories 와 같은 메시지를 볼 수 있습니다. 
+  이러한 경우에 할 수 있는 간단한 해결책을 알아보겠습니다.</p>
+</blockquote>
+
+<h2 id="problem">Problem</h2>
+
+<p>우선 저는 <code class="language-plaintext highlighter-rouge">git pull</code> 과 <code class="language-plaintext highlighter-rouge">git push</code> 둘다에 대해서 제대로 수행이 되지 않았습니다.</p>
+
+<p>그 원인은 2개의 다른 환경(pc) 에서 별도의 작업을 진행하였고, 그 중 하나에서 history 를 삭제하는 등의 작업을 하였고 나머지 하나에서 sync를 위해 push/pull을 시도하는 경우입니다.</p>
+
+<p>해결을 위해 다음 에러 메시지를 살펴보겠습니다.</p>
+
+<h3 id="git-push">git push</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push
+To https://github.com/akagaeng/your-project-name.git
+ <span class="o">!</span> <span class="o">[</span>rejected]        main -&gt; main <span class="o">(</span>non-fast-forward<span class="o">)</span>
+error: failed to push some refs to <span class="s1">'https://github.com/akagaeng/your-project-name.git'</span>
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
+hint: <span class="s1">'git pull ...'</span><span class="o">)</span> before pushing again.
+hint: See the <span class="s1">'Note about fast-forwards'</span> <span class="k">in</span> <span class="s1">'git push --help'</span> <span class="k">for </span>details.
+</code></pre></div></div>
+
+<p>위 에러 메시지를 확인해보면 <code class="language-plaintext highlighter-rouge">hint</code>를 찾을 수 있습니다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git pull</code> 등을 이용해서 코드를 합쳐라.
+    <ul>
+      <li>일부가 원격 저장소보다 더 오래된 버전이다(behind) 라고 하는 것 같습니다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git push --help</code> 에서 <code class="language-plaintext highlighter-rouge">fast-forwards</code> 부분을 참고해라.</li>
+</ul>
+
+<p>아래에서 한번 확인해 보겠습니다.</p>
+
+<h3 id="git-pull">git pull</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git pull
+fatal: refusing to merge unrelated histories
+</code></pre></div></div>
+
+<p>여기서는 위 사례처럼 에러 메시지에서 가이드가 없으므로, 에러 메시지로 <a href="https://www.google.com/search?sxsrf=ALeKk035nOYcEwo4kuKO11f0ZD4qui7abQ%3A1608172459511&amp;source=hp&amp;ei=q8PaX5iaHfTRmAXpj7nwDA&amp;q=fatal%3A+refusing+to+merge+unrelated+histories&amp;oq=fatal%3A+refusing+to+merge+unrelated+histories&amp;gs_lcp=CgZwc3ktYWIQAzIECCMQJzIHCAAQFBCHAjICCAAyAggAMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeOgcIIxDqAhAnUL09WL09YNtBaAFwAHgAgAHfA4gB3wOSAQM0LTGYAQCgAQKgAQGqAQdnd3Mtd2l6sAEK&amp;sclient=psy-ab&amp;ved=0ahUKEwjYm72h_dPtAhX0KKYKHelHDs4Q4dUDCAc&amp;uact=5">구글</a>, <a href="https://stackoverflow.com/search?q=fatal%3A+refusing+to+merge+unrelated+histories">stack overflow</a> 등에서 검색해볼 수 있겠습니다.</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>위 문제분석을 통해 제가 찾아낸 해결책은 다음과 같습니다. 본인의 상황에 맞도록 활용하시면 좋겠습니다.</p>
+
+<h3 id="현재-작업하는-버전을-살리고-싶은-경우">현재 작업하는 버전을 살리고 싶은 경우</h3>
+<p>다른건 모르겠고 현재 작업중인 환경(pc)을 살리고 싶은 경우입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin master <span class="nt">--force</span>
+</code></pre></div></div>
+
+<p>이렇게 하면, 원격지의 버전을 현재 버전으로 덮어쓰게 됩니다. (overwrite)</p>
+
+<h3 id="원격에-push-되어있는-버전을-살리고-싶은-경우">원격에 push 되어있는 버전을 살리고 싶은 경우</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull <span class="nt">--rebase</span>
+
+<span class="c"># or</span>
+git pull <span class="nt">--allow-unrelated-histories</span>
+</code></pre></div></div>
+
+<p>위 두개 중에 하나를 실행시키시면 원격지의 버전을 로컬 환경에 반영하게 됩니다.</p>
+
+
+    </div>
+  </article><!-- .post -->
+
+  <!-- Next/previous post navigation TBD -->
+  <!--
+  <nav class="block block-read-next">
+    <h2 class="block-title underline inner-sm">Read Next</h2>
+    <div class="post-feed">
+      <div class="post-feed-inside">
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Previous Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Previous post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Previous post date</time>
+            </footer>
+          </div>
+        </article>
+        <article class="post post-card">
+          <div class="post-inside">
+            <a class="post-thumbnail" href="#"><img src="#" alt="" /></a>
+            <header class="post-header">
+              <h3 class="post-title"><a href="#" rel="bookmark">Next Post Title</a></h3>
+            </header>
+            <div class="post-content">
+              <p>Next post excerpt...</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published" datetime="">Next post date</time>
+            </footer>
+          </div>
+        </article>
+      </div>
+    </div>
+  </nav>
+  -->
+
+      </main><!-- .site-main -->
+      <footer id="colophon" class="site-footer inner-sm">
+  <p class="site-info">
+    
+    
+    <span class="copyright">&copy; All rights reserved.</span>
+    
+    
+    <a  href="https://www.stackbit.com" target="_blank" rel="noopener">Made with Stackbit.</a>
+    
+  </p><!-- .site-info -->
+  <a id="to-top" class="to-top" href="#page"><span class="icon-arrow-up" aria-hidden="true"></span><span
+      class="screen-reader-text">Back to top</span></a>
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site-content -->
+</div><!-- .site -->
+
+        <!-- Scripts -->
+        <script src="/assets/js/plugins.js"></script>
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>

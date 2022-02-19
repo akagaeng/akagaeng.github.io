@@ -1,0 +1,18 @@
+{
+  "private": false,
+  "name": "akagaeng.github.io",
+  "repository": "https://github.com/akagaeng/akagaeng.github.io.git",
+  "description": "",
+  "version": "1.0.1",
+  "author": "akagaeng <akagaeng@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "jekyll build",
+    "install": "bundle install",
+    "serve": "bundle exec jekyll serve --livereload",
+    "serve:draft": "bundle exec jekyll serve --drafts",
+    "clean": "jekyll clean"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
